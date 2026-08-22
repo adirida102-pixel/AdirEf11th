@@ -21,6 +21,8 @@ namespace AdirEf11th
             //Console.WriteLine(SummerQuestion5(5, 2));
             //Console.WriteLine(SummerQuestion6(5, 2));
             //Console.WriteLine(SummerQuestion6(15, 4));
+            //Console.WriteLine(SummerQuestion7(12, 3));
+            //Console.WriteLine(SummerQuestion7(17, 7));
         }
 
         public static int SummerQuestion1(int n)
@@ -101,6 +103,22 @@ namespace AdirEf11th
             }
 
             return remainder;
+        }
+
+        public static bool SummerQuestion7(int num1, int num2)
+        {
+            bool dividable = false;
+
+            if (num1 > 0)
+            {
+                dividable = SummerQuestion7(num1 - num2, num2);
+            }
+            else if (num1 == 0)
+            {
+                dividable = true;
+            }
+
+            return dividable;
         }
     }
 }
