@@ -105,15 +105,15 @@ namespace AdirEf11th
             return remainder;
         }
 
-        public static bool SummerQuestion7(int num1, int num2)
+        public static bool SummerQuestion7(int x, int y)
         {
             bool dividable = false;
 
-            if (num1 > 0)
+            if (x > 0)
             {
-                dividable = SummerQuestion7(num1 - num2, num2);
+                dividable = SummerQuestion7(x - y, y);
             }
-            else if (num1 == 0)
+            else if (x == 0)
             {
                 dividable = true;
             }
