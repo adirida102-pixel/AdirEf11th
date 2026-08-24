@@ -23,6 +23,27 @@ namespace AdirEf11th
             //Console.WriteLine(SummerQuestion6(15, 4));
             //Console.WriteLine(SummerQuestion7(12, 3));
             //Console.WriteLine(SummerQuestion7(17, 7));
+            //Console.WriteLine(SummerQuestion8(7, 7));
+            //Console.WriteLine(SummerQuestion8(9, 9));
+            //Console.WriteLine(SummerQuestion8(1, 1));
+            //Console.WriteLine(SummerQuestion8(2, 2));
+            //Console.WriteLine(SummerQuestion8(3, 3));
+            //Console.WriteLine(SummerQuestion8(14, 14));
+            //Console.WriteLine(SummerQuestion9(24886));
+            //Console.WriteLine(SummerQuestion9(23187));
+            //Console.WriteLine(SummerQuestion9(21));
+            //Console.WriteLine(SummerQuestion9(24));
+            //Console.WriteLine(SummerQuestion10(3));
+            //Console.WriteLine(SummerQuestion10(5));
+            //Console.WriteLine(SummerQuestion10(6));
+            //Console.WriteLine(SummerQuestion11(4));
+            //Console.WriteLine(SummerQuestion12(20, 9, true));
+            //Console.WriteLine(SummerQuestion13A(5));
+            //Console.WriteLine(SummerQuestion13A(6));
+            //Console.WriteLine(SummerQuestion13A(8));
+            //Console.WriteLine(SummerQuestion13B(4));
+            //Console.WriteLine(SummerQuestion13B(6));
+            //Console.WriteLine(SummerQuestion13B(7));
         }
 
         public static int SummerQuestion1(int n)
@@ -119,6 +140,129 @@ namespace AdirEf11th
             }
 
             return dividable;
+        }
+
+        public static bool SummerQuestion8(int num, int n) //the first value of n is the same as num
+        {
+            bool prime = true;
+
+            if (n == num)
+            {
+                n -= 1;
+            }
+            if (n > 1)
+            {
+                prime = (num % n != 0) && SummerQuestion8(num, n - 1);
+            }
+
+            return prime;
+        }
+
+        public static bool SummerQuestion9(int num)
+        {
+            bool condition = true;
+
+            if (num >= 10)
+            {
+                condition = num % 10 % 2 == num / 10 % 10 % 2;
+                condition = condition && SummerQuestion9(num / 10);
+            }
+
+            return condition;
+        }
+
+        public static int SummerQuestion10(int n)
+        {
+            int sum = 0;
+
+            if (n > 0)
+            {
+                if (n % 2 == 0)
+                {
+                    sum += n * n;
+                }
+                else
+                {
+                    sum += n * 2;
+                }
+                sum += SummerQuestion10(n - 1);
+            }
+
+            return sum;
+        }
+
+        public static double SummerQuestion11(int n)
+        {
+            double sum = 0;
+
+            if (n > 0)
+            {
+                if (n % 2 == 0)
+                {
+                    sum -= Math.Sqrt(n * 2 - 1);
+                }
+                else
+                {
+                    sum += n * 2 - 1;
+                }
+                sum += SummerQuestion11(n - 1);
+            }
+
+            return sum;
+        }
+
+        public static int SummerQuestion12(int n1, int n2, bool start)
+        {
+            int sum = 0;
+
+            if (start)
+            {
+                n2--;
+                start = false;
+            }
+            if (n2 > 0)
+            {
+                if (n1 % n2 == 0)
+                {
+                    sum += n2;
+                }
+                sum += SummerQuestion12(n1, n2 - 1, start);
+            }
+
+            return sum;
+        } //first value of bool start is true
+
+        public static int SummerQuestion13A(int place)
+        {
+            int num = 0;
+
+            if (place == 1)
+            {
+                num = 0;
+            }
+            else if (place == 2)
+            {
+                num = 1;
+            }
+            else
+            {
+                num = (int)Math.Pow(SummerQuestion13A(place - 2), 2) + (int)Math.Pow(SummerQuestion13A(place - 1), 2);
+            }
+
+            return num;
+        }
+
+        public static int SummerQuestion13B(int n)
+        {
+            int sum = 0;
+
+            if (n > 0)
+            {
+                sum += SummerQuestion13A(n);
+                sum += SummerQuestion13B(n - 1);
+            }
+
+            return sum;
         }
     }
 }
