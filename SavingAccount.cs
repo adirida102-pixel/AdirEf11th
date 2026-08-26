@@ -31,6 +31,7 @@ namespace AdirEf11th
             //Console.WriteLine(a2);
             //a2.SetEndDate(new Date(2, 2, 2222));
             //Console.WriteLine(a2);
+            //Console.WriteLine(a1.AtRisk());
         }
 
         public SavingAccount(int bankNum, int branchNum, int accountNum, string accountID, Date endDate)
@@ -53,6 +54,12 @@ namespace AdirEf11th
                 success = true;
             }
             return success;
+        }
+
+        public override bool AtRisk()
+        {
+            bool risk = this.GetBalance() == 0;
+            return risk;
         }
 
         public override string ToString()

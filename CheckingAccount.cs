@@ -32,6 +32,8 @@ namespace AdirEf11th
             //Console.WriteLine(a2);
             //Console.WriteLine(a2.Withdrawal(200));
             //Console.WriteLine(a2);
+            //Console.WriteLine(a2.Withdrawal(50));
+            //Console.WriteLine(a2.AtRisk());
         }
 
         public CheckingAccount(int bankNum, int branchNum, int accountNum, string accountID)
@@ -70,10 +72,11 @@ namespace AdirEf11th
             return success;
         }
 
-        //public bool Pay()
-        //{
-
-        //}
+        public override bool AtRisk()
+        {
+            bool risk = this.GetBalance() < 0;
+            return risk;
+        }
 
         public override string ToString()
         {

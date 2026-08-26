@@ -10,6 +10,13 @@ namespace AdirEf11th
     {
         private string businessName;
 
+        public static void BusinessAccount_UT()
+        {
+            //BusinessAccount a = new BusinessAccount(1, 2, 3, "444", 100, "bus");
+            //Console.WriteLine(a.Withdrawal(90));
+            //Console.WriteLine(a.AtRisk());
+        }
+
         public BusinessAccount(int bankNum, int branchNum, int accountNum, string accountID, string businessName)
             : base(bankNum, branchNum, accountNum, accountID)
         {
@@ -30,6 +37,12 @@ namespace AdirEf11th
         public void SetBusinessName(string businessName)
         {
             this.businessName = businessName;
+        }
+
+        public override bool AtRisk()
+        {
+            bool risk = this.GetBalance() <= -1 * 0.9 * this.GetOverdraft();
+            return risk;
         }
 
         public override string ToString()

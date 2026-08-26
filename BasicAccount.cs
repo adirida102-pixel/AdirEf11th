@@ -20,6 +20,7 @@ namespace AdirEf11th
             //Console.WriteLine(a.GetBalance());
             //Console.WriteLine(a.Deposit(1000000));
             //Console.WriteLine(a.GetBalance());
+            //Console.WriteLine(a.AtRisk());
         }
 
         public BasicAccount(int bankNum, int branchNum, int accountNum, string accountID)
@@ -70,6 +71,11 @@ namespace AdirEf11th
                 success = true;
             }
             return success;
+        }
+
+        public virtual bool AtRisk()
+        {
+            return false;
         }
 
         public override string ToString()
