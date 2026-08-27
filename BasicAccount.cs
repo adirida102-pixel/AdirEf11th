@@ -62,7 +62,7 @@ namespace AdirEf11th
             this.balance = balance;
         }
 
-        public virtual bool Deposit(int num)
+        public virtual bool Deposit(double num)
         {
             bool success = false;
             if (num > 0)

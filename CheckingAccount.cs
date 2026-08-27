@@ -61,7 +61,7 @@ namespace AdirEf11th
             }
         }
 
-        public bool Withdrawal(int num)
+        public bool Withdrawal(double num)
         {
             bool success = false;
             if (num > 0 && this.balance - num > -1 * this.overdraft)

@@ -45,7 +45,7 @@ namespace AdirEf11th
             return this.endDate;
         }
 
-        public bool Withdrawal(int num, Date date)
+        public bool Withdrawal(double num, Date date)
         {
             bool success = false;
             if (num > 0 && this.GetEndDate().CompareTo(date) != -1)
