@@ -39,6 +39,13 @@ namespace AdirEf11th
             this.businessName = businessName;
         }
 
+        public bool FundsTransfer(double amount, BasicAccount account)
+        {
+            bool b = base.Withdrawal(amount);
+            if (b) { account.Deposit(amount); }
+            return b;
+        }
+
         public override bool AtRisk()
         {
             bool risk = this.GetBalance() <= -1 * 0.9 * this.GetOverdraft();
