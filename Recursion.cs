@@ -44,6 +44,11 @@ namespace AdirEf11th
             //Console.WriteLine(SummerQuestion13B(4));
             //Console.WriteLine(SummerQuestion13B(6));
             //Console.WriteLine(SummerQuestion13B(7));
+
+            int[] arr = { 8, 23, 22, 12, 102, 56, 88 };
+            //Console.WriteLine(Max(arr, 6));
+            //Console.WriteLine(Question14(arr, 2));
+            //Console.WriteLine(Question15(arr, 5));
         }
 
         public static int SummerQuestion1(int n)
@@ -211,7 +216,7 @@ namespace AdirEf11th
             return sum;
         }
 
-        public static int SummerQuestion12(int n1, int n2, bool start)
+        public static int Question12(int n1, int n2, bool start)
         {
             int sum = 0;
 
@@ -226,13 +231,13 @@ namespace AdirEf11th
                 {
                     sum += n2;
                 }
-                sum += SummerQuestion12(n1, n2 - 1, start);
+                sum += Question12(n1, n2 - 1, start);
             }
 
             return sum;
         } //first value of bool start is true
 
-        public static int SummerQuestion13A(int place)
+        public static int Question13A(int place)
         {
             int num = 0;
 
@@ -246,23 +251,91 @@ namespace AdirEf11th
             }
             else
             {
-                num = (int)Math.Pow(SummerQuestion13A(place - 2), 2) + (int)Math.Pow(SummerQuestion13A(place - 1), 2);
+                num = (int)Math.Pow(Question13A(place - 2), 2) + (int)Math.Pow(Question13A(place - 1), 2);
             }
 
             return num;
         }
 
-        public static int SummerQuestion13B(int n)
+        public static int Question13B(int n)
         {
             int sum = 0;
 
             if (n > 0)
             {
-                sum += SummerQuestion13A(n);
-                sum += SummerQuestion13B(n - 1);
+                sum += Question13A(n);
+                sum += Question13B(n - 1);
             }
 
             return sum;
         }
+
+        private static int Max(int[] arr, int i)
+        {
+            int max = 0;
+
+            if (i > 0)
+            {
+                max = Math.Max(Max(arr, i - 1), arr[i]);
+            }
+            else
+            {
+                max = arr[i];
+            }
+
+            return max;
+        }
+        public static int Max(int[] arr)
+        {
+            return Max(arr, arr.Length - 1);
+        }
+
+        public static int Question14(int[] arr, int i)
+        {
+            int sum = 0;
+
+            if (i > 0)
+            {
+                sum += arr[i] + Question14(arr, i - 1);
+            }
+            else
+            {
+                sum += arr[i];
+            }
+
+            return sum;
+        }
+
+        public static int Question15(int[] arr, int i)
+        {
+            int posCount = 0;
+
+            if (i > 0)
+            {
+                if (arr[i] % 2 == 0)
+                {
+                    posCount++;
+                }
+                posCount += Question15(arr, i - 1);
+            }
+            else
+            {
+                if (arr[i] % 2 == 0)
+                {
+                    posCount++;
+                }
+            }
+
+            return posCount;
+        }
+
+        //private static int Question16(int[] arr, int num, int index) //TODO: this question and questions 17-23 for homework
+        //{
+            
+        //}
+        //public static int Question15(int[] arr, int num)
+        //{
+
+        //}
     }
 }
