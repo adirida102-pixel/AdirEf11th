@@ -49,6 +49,7 @@ namespace AdirEf11th
             int[] arr2 = { 3, 7, 12, 33, 76, 81, 102 };
             int[] arr3 = { 4, 12, 80, 48, 20 };
             int[,] mat = { { 3, 5, 7 }, { 5, 12, 0 }, { 9, 13, 17 } };
+            int[] arr4 = { 12, 21, 17, 0, 71 };
             //Console.WriteLine(Max(arr, 6));
             //Console.WriteLine(Question14(arr, 2));
             //Console.WriteLine(Question15(arr, 5));
@@ -59,6 +60,8 @@ namespace AdirEf11th
             //Console.WriteLine(Question18(arr2));
             //Console.WriteLine(Question18(arr3));
             //Console.WriteLine(Question19(5, mat));
+            //Console.WriteLine(Question20(arr4));
+            Console.WriteLine(Question21("AAAaa1212"));
         }
 
         public static int Question1(int n)
@@ -440,20 +443,23 @@ namespace AdirEf11th
             return Question19(num, mat, 0);
         }
 
-        private static bool Question20(int[] arr, int num1, int num2)
+        private static bool Question20(string numStr, int strIndex)
         {
-            string numStr = "";
+            bool isPalindrome = true;
             
-            if (num1 <= num2)
+            if (strIndex < numStr.Length - strIndex)
             {
-                numStr += num1.ToString();
+                isPalindrome = numStr[strIndex] == numStr[numStr.Length - strIndex - 1];
+                isPalindrome = isPalindrome && Question20(numStr, strIndex + 1);
             }
-            //TBA
+
+            return isPalindrome;
         }
         public static bool Question20(int[] arr)
         {
             int num1, num2;
             Random rnd = new Random();
+            string numStr = "";
 
             num1 = rnd.Next(0, arr.Length);
             num2 = rnd.Next(0, arr.Length);
@@ -462,7 +468,36 @@ namespace AdirEf11th
                 num2 = rnd.Next(0, arr.Length);
             }
 
-            return Question20(arr, Math.Min(num1, num2), Math.Max(num1, num2));
+            if (num1 < num2)
+            {
+                numStr = arr[num1].ToString() + arr[num2].ToString();
+            }
+            else
+            {
+                numStr = arr[num2].ToString() + arr[num1].ToString();
+            }
+
+            return Question20(numStr, 0);
+        }
+
+        private static int Question21(string str, int index)
+        {
+            int smallLetterCount = 0;
+            
+            if (index < str.Length)
+            {
+                if ('a' <= str[index] && str[index] <= 'z')
+                {
+                    smallLetterCount++;
+                }
+                smallLetterCount += Question21(str, index + 1);
+            }
+
+            return smallLetterCount;
+        }
+        public static int Question21(string str)
+        {
+            return Question21(str, 0);
         }
     }
 }
