@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,12 @@ namespace AdirEf11th
             //Console.WriteLine(Question6(15, 4));
             //Console.WriteLine(Question7(12, 3));
             //Console.WriteLine(Question7(17, 7));
-            //Console.WriteLine(Question8(7, 7));
-            //Console.WriteLine(Question8(9, 9));
-            //Console.WriteLine(Question8(1, 1));
-            //Console.WriteLine(Question8(2, 2));
-            //Console.WriteLine(Question8(3, 3));
-            //Console.WriteLine(Question8(14, 14));
+            //Console.WriteLine(Question8(7));
+            //Console.WriteLine(Question8(9));
+            //Console.WriteLine(Question8(1));
+            //Console.WriteLine(Question8(2));
+            //Console.WriteLine(Question8(3));
+            //Console.WriteLine(Question8(14));
             //Console.WriteLine(Question9(24886));
             //Console.WriteLine(Question9(23187));
             //Console.WriteLine(Question9(21));
@@ -37,7 +38,7 @@ namespace AdirEf11th
             //Console.WriteLine(Question10(5));
             //Console.WriteLine(Question10(6));
             //Console.WriteLine(Question11(4));
-            //Console.WriteLine(Question12(20, 9, true));
+            //Console.WriteLine(Question12(20, 9));
             //Console.WriteLine(Question13A(5));
             //Console.WriteLine(Question13A(6));
             //Console.WriteLine(Question13A(8));
@@ -45,11 +46,11 @@ namespace AdirEf11th
             //Console.WriteLine(Question13B(6));
             //Console.WriteLine(Question13B(7));
 
-            int[] arr = { 8, 23, 22, 12, 102, 56, 88 };
-            int[] arr2 = { 3, 7, 12, 33, 76, 81, 102 };
-            int[] arr3 = { 4, 12, 80, 48, 20 };
-            int[,] mat = { { 3, 5, 7 }, { 5, 12, 0 }, { 9, 13, 17 } };
-            int[] arr4 = { 12, 21, 17, 0, 71 };
+            //int[] arr = { 8, 23, 22, 12, 102, 56, 88 };
+            //int[] arr2 = { 3, 7, 12, 33, 76, 81, 102 };
+            //int[] arr3 = { 4, 12, 80, 48, 20 };
+            //int[,] mat = { { 3, 5, 7 }, { 5, 12, 0 }, { 9, 13, 17 } };
+            //int[] arr4 = { 12, 21, 17, 0, 71 };
             //Console.WriteLine(Max(arr, 6));
             //Console.WriteLine(Question14(arr, 2));
             //Console.WriteLine(Question15(arr, 5));
@@ -61,7 +62,16 @@ namespace AdirEf11th
             //Console.WriteLine(Question18(arr3));
             //Console.WriteLine(Question19(5, mat));
             //Console.WriteLine(Question20(arr4));
-            Console.WriteLine(Question21("AAAaa1212"));
+            //Console.WriteLine(Question21("AAAaa1212"));
+            //Console.WriteLine(Question22("abcdefg"));
+            //Console.WriteLine(Question23("abc123"));
+
+            //Question24('b', 'e');
+            //Question25(30);
+            //Question26(102);
+            //Question27();
+            //Question28(2, 3, 5);
+            //Question29(7);
         }
 
         public static int Question1(int n)
@@ -233,7 +243,7 @@ namespace AdirEf11th
             return sum;
         }
 
-        public static int Question12(int n1, int n2, bool start)
+        private static int Question12(int n1, int n2, bool start)
         {
             int sum = 0;
 
@@ -252,7 +262,11 @@ namespace AdirEf11th
             }
 
             return sum;
-        } //first value of bool start is true
+        }
+        public static int Question12(int n1, int n2)
+        {
+            return Question12(n1, n2, true);
+        }
 
         public static int Question13A(int place)
         {
@@ -478,7 +492,7 @@ namespace AdirEf11th
             }
 
             return Question20(numStr, 0);
-        }
+        } //should've used 2 indexes in the array instead of a string
 
         private static int Question21(string str, int index)
         {
@@ -499,5 +513,160 @@ namespace AdirEf11th
         {
             return Question21(str, 0);
         }
+
+        private static string Question22(string str, int index)
+        {
+            string newStr = "";
+
+            if (index < str.Length)
+            {
+                newStr += str[index];
+                if ((index + 1) % 3 == 0 && index != 0)
+                {
+                    newStr += '*';
+                }
+                newStr += Question22(str, index + 1);
+            }
+
+            return newStr;
+        }
+        public static string Question22(string str)
+        {
+            return Question22(str, 0);
+        }
+
+        private static string Question23(string str, int index)
+        {
+            string revStr = "";
+
+            if (index < str.Length)
+            {
+                revStr += str[str.Length - 1 - index];
+                revStr += Question23(str, index + 1);
+            }
+
+            return revStr;
+        }
+        public static string Question23(string str)
+        {
+            return Question23(str, 0);
+        }
+
+        public static void Question24(char ch1, char ch2)
+        {
+            int ch1Num = (int)ch1, ch2Num = (int)ch2;
+
+            if (ch1Num <= ch2Num)
+            {
+                Console.Write(ch1);
+                Question24((char)(ch1Num + 1), ch2);
+            }
+            Console.WriteLine();
+        } //ask about z, a
+
+        private static void Question25(int n, int num)
+        {
+            if (num > 0)
+            {
+                if (n % num == 0)
+                {
+                    Console.WriteLine(num);
+                }
+                Question25(n, num - 1);
+            }
+        }
+        public static void Question25(int n)
+        {
+            Question25(n, n);
+        }
+
+        public static void Question26(int num)
+        {
+            if (num > 0)
+            {
+                if (num % 2 == 0)
+                {
+                    Console.WriteLine(num % 10);
+                }
+                Question26(num / 10);
+            }
+        }
+
+        private static void Question27(int n1, int n2)
+        {
+            if (n1 <= 10 && n2 <= 10)
+            {
+                Console.Write(n1 * n2 + "\t");
+                if (n2 < 10)
+                {
+                    Question27(n1, n2 + 1);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Question27(n1 + 1, 1);
+                }
+            }
+        }
+        public static void Question27()
+        {
+            Question27(1, 1);
+        }
+
+        private static void Question28(int a1, int d, int n, int num)
+        {
+            if (num <= n)
+            {
+                Console.Write(a1 + (num - 1) * d);
+                if (num < n)
+                {
+                    Console.Write(", ");
+                }
+                Question28(a1, d, n, num + 1);
+            }
+            else
+            {
+                Console.WriteLine();
+            }
+        }
+        public static void Question28(int a1, int d, int n)
+        {
+            Question28(a1, d, n, 1);
+        }
+
+        private static void Question29(int n, int crnt, int recNum)
+        {
+            int num = 1;
+            
+            if (crnt < n)
+            {
+                num = recNum + crnt;
+                Console.Write(1 + num);
+                if (crnt < n - 1)
+                {
+                    Console.Write(", ");
+                }
+                Question29(n, crnt + 1, num);
+            }
+            else
+            {
+                Console.WriteLine();
+            }
+        }
+        public static void Question29(int n)
+        {
+            Question29(n, 0, 0);
+        }
+
+        private static void Question30(int n, int crnt, int recNum)
+        {
+            int num = 0;
+            
+            if (crnt <= n)
+            {
+
+            }
+        }
+        //TODO: this question and public function
     }
 }
