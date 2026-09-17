@@ -46,11 +46,12 @@ namespace AdirEf11th
             //Console.WriteLine(Question13B(6));
             //Console.WriteLine(Question13B(7));
 
-            //int[] arr = { 8, 23, 22, 12, 102, 56, 88 };
+            //int[] arr = { 8, 23, 22, 12, 102, 56, 88, 18 };
             //int[] arr2 = { 3, 7, 12, 33, 76, 81, 102 };
             //int[] arr3 = { 4, 12, 80, 48, 20 };
             //int[,] mat = { { 3, 5, 7 }, { 5, 12, 0 }, { 9, 13, 17 } };
             //int[] arr4 = { 12, 21, 17, 0, 71 };
+
             //Console.WriteLine(Max(arr, 6));
             //Console.WriteLine(Question14(arr, 2));
             //Console.WriteLine(Question15(arr, 5));
@@ -72,6 +73,12 @@ namespace AdirEf11th
             //Question27();
             //Question28(2, 3, 5);
             //Question29(7);
+            //Question30(9);
+            //Question31(arr);
+            //Question32(arr2);
+            //Question32(arr);
+            //Question33(mat);
+            //Question34(mat);
         }
 
         public static int Question1(int n)
@@ -664,9 +671,105 @@ namespace AdirEf11th
             
             if (crnt <= n)
             {
-
+                if (crnt == 1)
+                {
+                    num = 4;
+                }
+                else
+                {
+                    if (crnt % 2 == 0)
+                    {
+                        num = recNum - 1;
+                    }
+                    else
+                    {
+                        num = recNum + 2;
+                    }
+                }
+                Console.Write(num);
+                if (crnt != n)
+                {
+                    Console.Write(", ");
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+                Question30(n, crnt + 1, num);
             }
         }
-        //TODO: this question and public function
+        public static void Question30(int n)
+        {
+            Question30(n, 1, 1);
+        }
+
+        private static void Question31(int[] arr, int index)
+        {
+            if (index < arr.Length)
+            {
+                Console.WriteLine(arr[index]);
+                Question31(arr, index + 2);
+            }
+        }
+        public static void Question31(int[] arr)
+        {
+            Question31(arr, 0);
+        }
+
+        private static void Question32(int[] arr, int index)
+        {
+            if (index < arr.Length - 1)
+            {
+                if (arr[index] < arr[index + 1])
+                {
+                    Console.WriteLine(arr[index]);
+                }
+                Question32(arr, index + 1);
+            }
+        }
+        public static void Question32(int[] arr)
+        {
+            Question32(arr, 0);
+        }
+
+        private static void Question33(int[,] mat, int row, int col)
+        {
+            if (row < mat.GetLength(0))
+            {
+                Console.Write(mat[row, col] + "\t");
+                if (col == mat.GetLength(1) - 1)
+                {
+                    Console.WriteLine();
+                    Question33(mat, row + 1, 0);
+                }
+                else
+                {
+                    Question33(mat, row, col + 1);
+                }
+            }
+        }
+        public static void Question33(int[,] mat)
+        {
+            Question33(mat, 0, 0);
+        }
+
+        private static void Question34(int[,] mat, int row)
+        {
+            int max = mat[0, 0];
+            
+            if (row < mat.GetLength(0))
+            {
+                for (int col = 0; col < mat.GetLength(1); col++)
+                {
+                    max = Math.Max(max, mat[row, col]);
+                }
+                Console.WriteLine(max);
+                Question34(mat, row + 1);
+            }
+        }
+        public static void Question34(int[,] mat)
+        {
+            Question34(mat, 0);
+        }
     }
 }
