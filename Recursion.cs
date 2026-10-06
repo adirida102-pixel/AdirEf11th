@@ -79,6 +79,10 @@ namespace AdirEf11th
             //Question32(arr);
             //Question33(mat);
             //Question34(mat);
+
+            //test question check:
+            //bool[] arr = { true, false, false, false, true, true, true, true, true, false, false, true, false, false, false, false, false, false, true };
+            //Console.WriteLine(BWS(arr));
         }
 
         public static int Question1(int n)
@@ -771,5 +775,33 @@ namespace AdirEf11th
         {
             Question34(mat, 0);
         }
+
+        public static int BWS(bool[] arr)
+        {
+            return BWS(arr, 0, 0, 0);
+        }
+        private static int BWS(bool[] arr, int index, int biggest, int stroke)
+        {
+            int s = 0, biggestStroke = 0, nothing = 0;
+            
+            if (index < arr.Length)
+            {
+                if (arr[index])
+                {
+                    s++;
+                }
+                else
+                {
+                    s = 0;
+                    if (stroke > biggest)
+                    {
+                        biggestStroke = stroke;
+                    }
+                }
+                nothing = BWS(arr, index + 1, s, biggestStroke);
+            }
+
+            return biggestStroke;
+        } //well that's unfortunate...
     }
 }
