@@ -7,12 +7,14 @@
             //Test1();
             //TestLinkedList();
 
-            //IntNode n1 = new IntNode(21);
-            //IntNode n = new IntNode(47, n1);
-            //IntNode pos = n;
-            //n1 = null;
-            //n.GetNext().SetNext(new IntNode(12));
-            //n.GetNext().GetNext().SetNext(new IntNode(1));
+            IntNode n1 = new IntNode(4);
+            IntNode n = new IntNode(12, n1);
+            IntNode pos = n;
+            n1 = null;
+            n.GetNext().SetNext(new IntNode(3));
+            n.GetNext().GetNext().SetNext(new IntNode(2));
+            n.GetNext().GetNext().GetNext().SetNext(new IntNode(3));
+            n.GetNext().GetNext().GetNext().GetNext().SetNext(new IntNode(11));
 
             //Console.WriteLine(Print(n));
             //Console.WriteLine(n);
@@ -23,6 +25,12 @@
             //Console.WriteLine(Question4(n));
             //Console.WriteLine(Question5(n, 17));
             //Console.WriteLine(Question6(n));
+
+            //Console.WriteLine(MoreQuestion2(n, 3));
+            //Console.WriteLine(MoreQuestion4(n));
+            //Console.WriteLine(Print(n));
+            //MoreQuestion5(n, 3);
+            //Console.WriteLine(Print(n));
         }
 
         public static void Test1()
@@ -142,11 +150,7 @@
                 lst = lst.GetNext();
             }
 
-            diff = oddSum - evenSum;
-            if (diff < 0)
-            {
-                diff *= -1;
-            }
+            diff = Math.Abs(oddSum - evenSum);
 
             return diff;
         }
@@ -200,6 +204,78 @@
             }
 
             return con;
+        }
+
+        public static int MoreQuestion2(IntNode lst, int num)
+        {
+            int count = 0;
+
+            while (lst != null)
+            {
+                if (lst.GetValue() == num)
+                {
+                    if (lst.GetNext() == null)
+                    {
+                        count++;
+                    }
+                    else if (lst.GetNext().GetValue() != num)
+                    {
+                        count++;
+                    }
+                }
+                lst = lst.GetNext();
+            }
+
+            return count;
+        }
+
+        public static char MoreQuestion4(IntNode lst)
+        {
+            char ch = 's';
+            int eCount = 0, zCount = 0;
+
+            while (lst != null)
+            {
+                if (lst.GetValue() % 2 == 0)
+                {
+                    zCount++;
+                }
+                else
+                {
+                    eCount++;
+                }
+                lst = lst.GetNext();
+            }
+
+            if (zCount > eCount)
+            {
+                ch = 'z';
+            }
+            else if (eCount > zCount)
+            {
+                ch = 'e';
+            }
+
+            return ch;
+        }
+
+        public static IntNode MoreQuestion5(IntNode lst, int num)
+        {
+            IntNode temp;
+            IntNode pos = lst;
+            
+            while (pos != null)
+            {
+                temp = pos.GetNext();
+                if (temp != null && temp.GetValue() == num)
+                {
+                    pos.SetNext(temp.GetNext());
+                    temp = null;
+                }
+                pos = pos.GetNext();
+            }
+
+            return lst;
         }
     }
 }
