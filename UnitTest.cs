@@ -7,13 +7,13 @@
             //Test1();
             //TestLinkedList();
 
-            IntNode n1 = new IntNode(4);
-            IntNode n = new IntNode(12, n1);
+            IntNode n1 = new IntNode(99);
+            IntNode n = new IntNode(102, n1);
             IntNode pos = n;
             n1 = null;
-            n.GetNext().SetNext(new IntNode(3));
-            n.GetNext().GetNext().SetNext(new IntNode(2));
-            n.GetNext().GetNext().GetNext().SetNext(new IntNode(3));
+            n.GetNext().SetNext(new IntNode(12));
+            n.GetNext().GetNext().SetNext(new IntNode(17));
+            n.GetNext().GetNext().GetNext().SetNext(new IntNode(5));
             n.GetNext().GetNext().GetNext().GetNext().SetNext(new IntNode(11));
 
             //Console.WriteLine(Print(n));
@@ -31,6 +31,11 @@
             //Console.WriteLine(Print(n));
             //MoreQuestion5(n, 3);
             //Console.WriteLine(Print(n));
+            //IntNode newL = MoreQuestion6(n);
+            //Console.WriteLine(Print(newL));
+            //Console.WriteLine(MoreQuestion8(n));
+            //MoreQuestion9(n);
+            //Console.WriteLine(Print(MoreQuestion10(3, 5)));
         }
 
         public static void Test1()
@@ -276,6 +281,89 @@
             }
 
             return lst;
+        }
+
+        public static IntNode MoreQuestion6(IntNode lst)
+        {
+            IntNode newLst = new IntNode(lst.GetValue());
+            IntNode pos = lst, posNew = newLst;
+            int val;
+            bool flag = true;
+            
+            while (pos != null)
+            {
+                val = pos.GetValue();
+                flag = true;
+                posNew = newLst;
+                while (posNew != null)
+                {
+                    if (posNew.GetValue() == val)
+                    {
+                        flag = false;
+                    }
+                    posNew = posNew.GetNext();
+                }
+                if (flag)
+                {
+                    posNew = newLst;
+                    while (posNew.GetNext() != null)
+                    {
+                        posNew = posNew.GetNext();
+                    }
+                    posNew.SetNext(new IntNode(val));
+                }
+                pos = pos.GetNext();
+            }
+
+            return newLst;
+        }
+
+        public static bool MoreQuestion8(IntNode lst)
+        {
+            bool con = true;
+
+            while (lst.GetNext() != null)
+            {
+                if (lst.GetValue() >= lst.GetNext().GetValue())
+                {
+                    con = false;
+                }
+                lst = lst.GetNext();
+            }
+
+            return con;
+        }
+
+        public static void MoreQuestion9(IntNode lst)
+        {
+            while (lst.GetNext() != null)
+            {
+                if (lst.GetValue() > lst.GetNext().GetValue())
+                {
+                    Console.WriteLine(lst.GetValue());
+                }
+                lst = lst.GetNext();
+            }
+        }
+
+        public static IntNode MoreQuestion10(int beginner, int num)
+        {
+            IntNode list = new IntNode(beginner);
+            IntNode pos = list;
+
+            for (int i = 1; i < num; i++)
+            {
+                pos.SetNext(new IntNode(beginner + i));
+                pos = pos.GetNext();
+            }
+
+            return list;
+        }
+
+        public static IntNode MoreQuestion11()
+        {
+            //TODO: This question, questions 12 and 14
+            return null;
         }
     }
 }
