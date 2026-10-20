@@ -6,7 +6,7 @@ namespace AdirEf11th
 {
     public class NodePractice
     {
-        public void Run()
+        public static void Run()
         {
             //Node<int> josh = new Node<int>(17);
             //Node<string> kosh = new Node<string>("Josh");
@@ -15,10 +15,17 @@ namespace AdirEf11th
 
             Node<char> lChar = new Node<char>('a');
             lChar.SetNext(new Node<char>('n'));
-            //continue unit test
+            lChar.GetNext().SetNext(new Node<char>('i'));
+            lChar.GetNext().GetNext().SetNext(new Node<char>('A'));
+            lChar.GetNext().GetNext().GetNext().SetNext(new Node<char>('d'));
+            lChar.GetNext().GetNext().GetNext().GetNext().SetNext(new Node<char>('i'));
+            lChar.GetNext().GetNext().GetNext().GetNext().GetNext().SetNext(new Node<char>('r'));
+
+            //Question15A(lChar, 'a');
+            //Question15B();
         }
 
-        public static int Question15A(Node<char> list, char ch)
+        public static void Question15A(Node<char> list, char ch)
         {
             int count = 0;
 
@@ -31,7 +38,35 @@ namespace AdirEf11th
                 list = list.GetNext();
             }
 
-            return count;
+            Console.WriteLine($"The character \'{ch}\' appears {count} times in the list.");
         }
+
+        public static void Question15B()
+        {
+            Node<char> list = null;
+            char ch;
+            int chNum;
+
+            Console.Write("Enter a letter: ");
+            ch = char.Parse(Console.ReadLine());
+            while (ch >= 'A' && ch <= 'Z' || ch >= 'a' && ch <= 'z')
+            {
+                list = new Node<char>(ch, list);
+                Console.Write("Enter a letter: ");
+                ch = char.Parse(Console.ReadLine());
+            }
+
+            for (int i = 0; i < 26 * 2 + 6; i++)
+            {
+                chNum = 'A' + i;
+                ch = (char)chNum;
+                if (i < 26 || i > 31)
+                {
+                    Question15A(list, ch);
+                }
+            }
+        }
+
+        //continue
     }
 }

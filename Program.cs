@@ -10,7 +10,8 @@
             //SavingAccount.SavingAccount_UT();
             //BusinessAccount.BusinessAccount_UT();
             //BankServices.BankServices_UT();
-            UnitTest.Run();
+            //UnitTest.Run();
+            NodePractice.Run();
         }
     }
 }
