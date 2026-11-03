@@ -5,11 +5,13 @@ using System.Text;
 
 namespace AdirEf11th
 {
-    public class Lists
+    public class ListAndDict
     {
-        public static void List_UT()
+        public static void ListsAndDictionaries_UT()
         {
-            T1();
+            //T1();
+            //InsertExecution();
+            Dictionary1();
         }
 
         public static void T1()
@@ -76,7 +78,31 @@ namespace AdirEf11th
 
         public static void InsertExecution()
         {
-            //
+            List<int> lst = new List<int>() { 5, 17, 12 };
+            Console.WriteLine("Before Insert:");
+            for (int i = 0; i < lst.Count; i++)
+            {
+                Console.WriteLine(lst[i]);
+            }
+            lst.Insert(2, 26);
+            Console.WriteLine("After Insert(2, 26):");
+            for (int i = 0; i < lst.Count; i++)
+            {
+                Console.WriteLine(lst[i]);
+            }
+        }
+
+        public static void Dictionary1()
+        {
+            Dictionary<int, int> likeArray = new Dictionary<int, int>();
+            for (int i = 0; i < 100; i++)
+            {
+                likeArray[i] = i + 100;
+            }
+            foreach (var item in likeArray)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
