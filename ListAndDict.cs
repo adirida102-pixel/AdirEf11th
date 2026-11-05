@@ -104,5 +104,72 @@ namespace AdirEf11th
                 Console.WriteLine(item);
             }
         }
+
+        public static void DictionaryMenu()
+        {
+            Dictionary<string, long> countries = new Dictionary<string, long>
+            {
+                {"United States", 331002651},
+                {"China", 1439323776},
+                {"India", 1380004385},
+                {"Brazil", 212559417},
+                {"Russia", 145934462},
+                {"Japan", 126476461},
+                {"Mexico", 128932753},
+                {"Philippines", 109581078},
+                {"Egypt", 102334404},
+                {"Vietnam", 97338579},
+                {"Germany", 83783942},
+                {"Turkey", 84339067},
+                {"United Kingdom", 67886011},
+                {"France", 65273511},
+                {"Italy", 60461826},
+                {"South Africa", 59308690},
+                {"South Korea", 51269185},
+                {"Canada", 37742154},
+                {"Australia", 25499884},
+                {"Argentina", 45195774}
+            };
+
+            string countryName = "";
+            bool countryFound = false;
+
+            int option = 0;
+            Console.WriteLine("1 - Search country population");
+            Console.WriteLine("2 - Update population in a country");
+            Console.WriteLine("3 - Add new country");
+            Console.WriteLine("4 - Exit");
+            Console.Write("Choose option: ");
+            option = int.Parse(Console.ReadLine());
+            while (option != 4)
+            {
+                if (option == 1)
+                {
+                    Console.Write("Enter country name: ");
+                    countryName = Console.ReadLine();
+                    countryFound = false;
+                    foreach (var item in countries)
+                    {
+                        if (item.Key == countryName)
+                        {
+                            countryFound = true;
+                            Console.WriteLine($"{countryName}'s population: {item.Value}");
+                        }
+                    }
+                    if (!countryFound)
+                    {
+                        Console.WriteLine("Country not found.");
+                    }
+                }
+                else if (option == 2)
+                {
+                    //TODO
+                }
+                else if (option == 3)
+                {
+                    //TODO
+                }
+            }
+        }
     }
 }
