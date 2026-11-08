@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Transactions;
 
 namespace AdirEf11th
 {
@@ -11,7 +13,42 @@ namespace AdirEf11th
         {
             //T1();
             //InsertExecution();
-            Dictionary1();
+
+            //Dictionary1();
+            //DictionaryMenu();
+
+            //TryCatch();
+            //TryCatchGradeAverage();
+
+            //LongProcess();
+            //ShortProcess();
+
+            //The program adds every number between 0-99999, 100000 times, then prints the number.
+            //Then prints every digit, which took less than a second.
+
+            //Output:
+            //Long Process Started
+            //677203456
+            //Long Process Completed
+            //Short Process Started
+            //0123456789
+            //Short Process Completed
+
+            //Task.Run(LongProcess2);
+            //Task.Run(ShortProcess2);
+            //Console.ReadKey();
+
+            //Output:
+            //Long Process Started
+            //Short Process Started
+            //0123456789
+            //Short Process Completed
+            //1066784512
+            //Long Process Completed
+
+            //The program does the same thing as the last one, but runs both functions at the same time.
+            //Also the LongProcess function adds number between 0-49999 instead of 0-99999.
+            //The ShortProcess function took less than a second to run.
         }
 
         public static void T1()
@@ -107,7 +144,7 @@ namespace AdirEf11th
 
         public static void DictionaryMenu()
         {
-            Dictionary<string, long> countries = new Dictionary<string, long>
+            Dictionary<string, int> countries = new Dictionary<string, int>
             {
                 {"United States", 331002651},
                 {"China", 1439323776},
@@ -133,6 +170,7 @@ namespace AdirEf11th
 
             string countryName = "";
             bool countryFound = false;
+            int countryPop = 0;
 
             int option = 0;
             Console.WriteLine("1 - Search country population");
@@ -163,13 +201,158 @@ namespace AdirEf11th
                 }
                 else if (option == 2)
                 {
-                    //TODO
+                    Console.Write("Enter country name: ");
+                    countryName = Console.ReadLine();
+                    countryFound = false;
+                    foreach (var item in countries)
+                    {
+                        if (item.Key == countryName)
+                        {
+                            countryFound = true;
+                        }
+                    }
+                    if (countryFound)
+                    {
+                        Console.Write("Enter the updated population: ");
+                        countryPop = int.Parse(Console.ReadLine());
+                        countries[countryName] = countryPop;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Country not found.");
+                    }
                 }
                 else if (option == 3)
                 {
-                    //TODO
+                    Console.Write("Enter country name: ");
+                    countryName = Console.ReadLine();
+                    countryFound = false;
+                    foreach (var item in countries)
+                    {
+                        if (item.Key == countryName)
+                        {
+                            countryFound = true;
+                        }
+                    }
+                    if (!countryFound)
+                    {
+                        Console.Write("Enter the new country's population: ");
+                        countryPop = int.Parse(Console.ReadLine());
+                        countries[countryName] = countryPop;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Country already exists in the dictionary.");
+                    }
                 }
+                else
+                {
+                    Console.WriteLine("Invalid option, try again.");
+                }
+                Console.WriteLine("1 - Search country population");
+                Console.WriteLine("2 - Update population in a country");
+                Console.WriteLine("3 - Add new country");
+                Console.WriteLine("4 - Exit");
+                Console.Write("Choose option: ");
+                option = int.Parse(Console.ReadLine());
             }
         }
+
+        public static void TryCatch()
+        {
+            Console.WriteLine("Please enter your age:");
+            string input = Console.ReadLine();
+
+            try
+            {
+                int age = int.Parse(input);
+                Console.WriteLine($"Your age is: {age}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error: You entered an input that is not a valid number.");
+                Console.WriteLine("The program will continue without crashing.");
+            }
+
+            Console.WriteLine("End of program.");
+        }
+
+        public static void TryCatchGradeAverage()
+        {
+            int grade1 = 0, grade2 = 0;
+            double average;
+
+            Console.Write("Enter grade 1: ");
+            try
+            {
+                grade1 = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("You didn't enter a whole number.");
+            }
+            Console.Write("Enter grade 2: ");
+            try
+            {
+                grade2 = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("You didn't enter a whole number.");
+            }
+
+            average = (grade1 + grade2) / 2;
+            Console.WriteLine($"The average of both grades is {average}");
+        }
+
+        public static void LongProcess()
+        {
+            Console.WriteLine("Long Process Started");
+            int x = 0;
+            for (int i = 0; i < 100000; i++)
+            {
+                for (int j = 0; j < 100000; j++)
+                {
+                    x = x + i;
+                }
+            }
+            Console.WriteLine(x);
+            Console.WriteLine("Long Process Completed");
+        }
+        public static void ShortProcess()
+        {
+            Console.WriteLine("Short Process Started");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write(i);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Short Process Completed");
+        }
+        public static void LongProcess2()
+        {
+            Console.WriteLine("Long Process Started");
+            int x = 0;
+            for (int i = 0; i < 50000; i++)
+            {
+                for (int j = 0; j < 100000; j++)
+                {
+                    x = x + i;
+                }
+            }
+            Console.WriteLine(x);
+            Console.WriteLine("Long Process Completed");
+        }
+        public static void ShortProcess2()
+        {
+            Console.WriteLine("Short Process Started");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write(i);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Short Process Completed");
+        }
+
     }
 }
