@@ -49,6 +49,14 @@ namespace AdirEf11th
             //The program does the same thing as the last one, but runs both functions at the same time.
             //Also the LongProcess function adds number between 0-49999 instead of 0-99999.
             //The ShortProcess function took less than a second to run.
+
+            //Task.Run(printRed);
+            //Task.Run(printGreen);
+            //Console.ReadKey();
+            //PrintColor(ConsoleColor.DarkMagenta);
+            //Task.Run(() => PrintColor(ConsoleColor.Cyan));
+            //Task.Run(() => PrintColor(ConsoleColor.Yellow));
+            //Console.ReadKey();
         }
 
         public static void T1()
@@ -354,5 +362,29 @@ namespace AdirEf11th
             Console.WriteLine("Short Process Completed");
         }
 
+        public static void printRed()
+        {
+            for (int i = 1; i <= 100; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(i + " ");
+            }
+        }
+        public static void printGreen()
+        {
+            for (int i = 1; i <= 100; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(i + " ");
+            }
+        }
+        public static void PrintColor(ConsoleColor color)
+        {
+            for (int i = 1; i <= 100; i++)
+            {
+                Console.ForegroundColor = color;
+                Console.Write(i + " ");
+            }
+        }
     }
 }
