@@ -11,8 +11,8 @@
             //BusinessAccount.BusinessAccount_UT();
             //BankServices.BankServices_UT();
             //UnitTest.Run();
-            //NodePractice.Run();
-            ListAndDict.ListsAndDictionaries_UT();
+            NodePractice.Run();
+            //ListAndDict.ListsAndDictionaries_UT();
         }
     }
 }

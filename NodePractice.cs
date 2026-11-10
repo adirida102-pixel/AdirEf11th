@@ -30,9 +30,9 @@ namespace AdirEf11th
             lStr = new Node<string>("apple", lStr);
 
             Node<int> lInt = new Node<int>(3);
+            lInt = new Node<int>(19, lInt);
+            lInt = new Node<int>(18, lInt);
             lInt = new Node<int>(17, lInt);
-            lInt = new Node<int>(7, lInt);
-            lInt = new Node<int>(1, lInt);
             lInt = new Node<int>(12, lInt);
             lInt = new Node<int>(102, lInt);
             lInt = new Node<int>(5, lInt);
@@ -59,6 +59,13 @@ namespace AdirEf11th
             {
                 Console.WriteLine("NULL!");
             }*/
+            //Console.WriteLine(Question25(lInt, 3));
+            Node<int> eto = Question26(lInt);
+            while (eto != null)
+            {
+                Console.WriteLine(eto.GetValue());
+                eto = eto.GetNext();
+            }
         }
 
         public static string Print<T>(Node<T> list)
@@ -217,6 +224,81 @@ namespace AdirEf11th
             }
 
             return theNode;
+        }
+
+        public static bool Question25(Node<int> lis, int num)
+        {
+            bool con = false;
+            int folC = 0;
+
+            while (lis.GetNext() != null)
+            {
+                if (lis.GetNext().GetValue() == lis.GetValue() + 1)
+                {
+                    folC++;
+                }
+                else
+                {
+                    if (folC >= num)
+                    {
+                        con = true;
+                    }
+                    folC = 1;
+                }
+                lis = lis.GetNext();
+            }
+
+            return con;
+        }
+
+        public static Node<int> Question26(Node<int> list)
+        {
+            Node<int> newList = null;
+            Node<int> temp;
+            Node<int> pos = list;
+            Node<int> newHead = list;
+            bool flag = false;
+            
+            while (pos != null)
+            {
+                if (pos.GetNext() != null)
+                {
+                    if (pos.GetNext().GetValue() % 2 == 0)
+                    {
+                        temp = pos.GetNext();
+                        pos.SetNext(temp.GetNext());
+                        newList = temp;
+                        temp = null;
+                        newList.SetNext(newHead);
+                        newHead = newList;
+                        flag = false;
+                    }
+                    else
+                    {
+                        flag = true;
+                    }
+                }
+                else
+                {
+                    if (pos.GetValue() % 2 == 0)
+                    {
+                        newList = pos;
+                        newList.SetNext(pos);
+                        pos.SetNext(null);
+                        flag = false;
+                    }
+                    else
+                    {
+                        flag = true;
+                    }
+                }
+                if (flag)
+                {
+                    pos = pos.GetNext();
+                }
+            }
+
+            return newList;
         }
     }
 }
