@@ -61,8 +61,9 @@ namespace AdirEf11th
             //Task.Run(() => PrintColor2(ConsoleColor.DarkBlue, 30));
             //Task.Run(() => PrintColor2(ConsoleColor.DarkRed, 35));
             //Console.ReadKey();
-            int x = await Task.Run(() => LongProcess3(1000));
-            Console.WriteLine(x);
+
+            //int x = await Task.Run(() => LongProcess3(1000));
+            //Console.WriteLine(x);
         }
 
         public static void T1()
