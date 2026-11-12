@@ -9,7 +9,7 @@ namespace AdirEf11th
 {
     public class ListAndDict
     {
-        public static void ListsAndDictionaries_UT()
+        public static async Task ListsAndDictionaries_UT()
         {
             //T1();
             //InsertExecution();
@@ -50,13 +50,19 @@ namespace AdirEf11th
             //Also the LongProcess function adds number between 0-49999 instead of 0-99999.
             //The ShortProcess function took less than a second to run.
 
-            //Task.Run(printRed);
-            //Task.Run(printGreen);
+            //Task.Run(PrintRed);
+            //Task.Run(PrintGreen);
             //Console.ReadKey();
             //PrintColor(ConsoleColor.DarkMagenta);
             //Task.Run(() => PrintColor(ConsoleColor.Cyan));
             //Task.Run(() => PrintColor(ConsoleColor.Yellow));
             //Console.ReadKey();
+
+            //Task.Run(() => PrintColor2(ConsoleColor.DarkBlue, 30));
+            //Task.Run(() => PrintColor2(ConsoleColor.DarkRed, 35));
+            //Console.ReadKey();
+            int x = await Task.Run(() => LongProcess3(1000));
+            Console.WriteLine(x);
         }
 
         public static void T1()
@@ -362,7 +368,7 @@ namespace AdirEf11th
             Console.WriteLine("Short Process Completed");
         }
 
-        public static void printRed()
+        public static void PrintRed()
         {
             for (int i = 1; i <= 100; i++)
             {
@@ -370,7 +376,7 @@ namespace AdirEf11th
                 Console.Write(i + " ");
             }
         }
-        public static void printGreen()
+        public static void PrintGreen()
         {
             for (int i = 1; i <= 100; i++)
             {
@@ -385,6 +391,28 @@ namespace AdirEf11th
                 Console.ForegroundColor = color;
                 Console.Write(i + " ");
             }
+        }
+        public static void PrintColor2(ConsoleColor color, int num)
+        {
+            for (int i = 1; i <= num; i++)
+            {
+                Console.ForegroundColor = color;
+                Console.Write(i + " ");
+            }
+        }
+        public static int LongProcess3(int num)
+        {
+            Console.WriteLine("Long Process Started");
+            int x = 0;
+            for (int i = 0; i < num; i++)
+            {
+                for (int j = 0; j < num; j++)
+                {
+                    x = x + i;
+                }
+            }
+            Console.WriteLine(x);
+            return x;
         }
     }
 }
