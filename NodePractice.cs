@@ -29,13 +29,18 @@ namespace AdirEf11th
             lStr = new Node<string>("cat", lStr);
             lStr = new Node<string>("apple", lStr);
 
-            Node<int> lInt = new Node<int>(3);
-            lInt = new Node<int>(19, lInt);
-            lInt = new Node<int>(18, lInt);
-            lInt = new Node<int>(17, lInt);
-            lInt = new Node<int>(12, lInt);
-            lInt = new Node<int>(102, lInt);
+            Node<int> lInt = new Node<int>(9);
+            lInt = new Node<int>(9, lInt);
+            lInt = new Node<int>(9, lInt);
+            lInt = new Node<int>(9, lInt);
+            lInt = new Node<int>(6, lInt);
             lInt = new Node<int>(5, lInt);
+            lInt = new Node<int>(5, lInt);
+            lInt = new Node<int>(4, lInt);
+            lInt = new Node<int>(3, lInt);
+            lInt = new Node<int>(3, lInt);
+            lInt = new Node<int>(3, lInt);
+            lInt = new Node<int>(1, lInt);
 
             //Question15A(lChar, 'a');
             //Question15B();
@@ -60,12 +65,18 @@ namespace AdirEf11th
                 Console.WriteLine("NULL!");
             }*/
             //Console.WriteLine(Question25(lInt, 3));
-            Node<int> eto = Question26(lInt);
+            /*Node<int> eto = Question26(lInt);
             while (eto != null)
             {
                 Console.WriteLine(eto.GetValue());
                 eto = eto.GetNext();
-            }
+            }*/
+            /*Node<int> no3Rep = Question27(lInt);
+            while (no3Rep != null)
+            {
+                Console.WriteLine(no3Rep.GetValue());
+                no3Rep = no3Rep.GetNext();
+            }*/
         }
 
         public static string Print<T>(Node<T> list)
@@ -300,5 +311,50 @@ namespace AdirEf11th
 
             return newList;
         }
+
+        public static Node<int> Question27(Node<int> list)
+        {
+            Node<int> revNList = null, newList = null;
+            int repVal;
+            bool flag = false;
+
+            while (list != null)
+            {
+                flag = true;
+                if (list.GetNext() != null && list.GetNext().GetNext() != null)
+                {
+                    if (list.GetValue() == list.GetNext().GetValue() && list.GetValue() == list.GetNext().GetNext().GetValue())
+                    {
+                        repVal = list.GetValue();
+                        while (list.GetNext() != null && list.GetValue() == repVal)
+                        {
+                            list = list.GetNext();
+                        }
+                        if (list.GetValue() == repVal)
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+                if (flag)
+                {
+                    revNList = new Node<int>(list.GetValue(), revNList);
+                }
+                list = list.GetNext();
+            }
+
+            while (revNList != null)
+            {
+                newList = new Node<int>(revNList.GetValue(), newList);
+                revNList = revNList.GetNext();
+            }
+
+            return newList;
+        }
+
+        //public static bool Question30A/*(IsPalindrome)*/(Node<int> lst, int n)
+        //{
+
+        //}
     }
 }
