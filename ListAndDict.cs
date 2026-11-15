@@ -62,8 +62,8 @@ namespace AdirEf11th
             //Task.Run(() => PrintColor2(ConsoleColor.DarkRed, 35));
             //Console.ReadKey();
 
-            //int x = await Task.Run(() => LongProcess3(1000));
-            //Console.WriteLine(x);
+            GoAsync(11111);
+            Console.ReadKey();
         }
 
         public static void T1()
@@ -401,6 +401,7 @@ namespace AdirEf11th
                 Console.Write(i + " ");
             }
         }
+
         public static int LongProcess3(int num)
         {
             Console.WriteLine("Long Process Started");
@@ -412,8 +413,12 @@ namespace AdirEf11th
                     x = x + i;
                 }
             }
-            Console.WriteLine(x);
             return x;
+        }
+        public static async Task GoAsync(int num)
+        {
+            int x = await Task.Run(() => LongProcess3(num));
+            Console.WriteLine(x);
         }
     }
 }
