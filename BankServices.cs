@@ -404,6 +404,13 @@ namespace AdirEf11th
             return suggestedAccs;
         }
 
+        //TODO:
+        //Question 17
+        //Both functions
+        //GetBusinessByWealthValue
+        //and
+        //GetSavingByDueDate
+
         public override string ToString()
         {
             string str = "";
