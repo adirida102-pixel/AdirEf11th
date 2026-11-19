@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdirEf11th
 {
-    public class Date
+    public class Date : IComparable
     {
         private int day;
         private int month;
@@ -89,42 +89,47 @@ namespace AdirEf11th
             }
         }
 
-        public int CompareTo(Date other)
+        public int CompareTo(object o)
         {
-            if (this.year > other.GetYear())
+            Date other;
+            int result = 0;
+
+            if (o is Date)
             {
-                return 1;
-            }
-            else if (this.year < other.GetYear())
-            {
-                return -1;
-            }
-            else
-            {
-                if (this.month > other.GetMonth())
+                other = (Date)o;
+                if (this.year > other.GetYear())
                 {
-                    return 1;
+                    result = 1;
                 }
-                else if (this.month < other.GetMonth())
+                else if (this.year < other.GetYear())
                 {
-                    return -1;
+                    result = -1;
                 }
                 else
                 {
-                    if (this.day > other.GetDay())
+                    if (this.month > other.GetMonth())
                     {
-                        return 1;
+                        result = 1;
                     }
-                    if (this.day < other.GetDay())
+                    else if (this.month < other.GetMonth())
                     {
-                        return -1;
+                        result = -1;
                     }
                     else
                     {
-                        return 0;
+                        if (this.day > other.GetDay())
+                        {
+                            result = 1;
+                        }
+                        if (this.day < other.GetDay())
+                        {
+                            result = -1;
+                        }
                     }
                 }
             }
+            
+            return result;
         }
 
         public override string ToString()

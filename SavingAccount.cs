@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AdirEf11th
 {
-    public class SavingAccount : BasicAccount
+    public class SavingAccount : BasicAccount, IComparable
     {
         private Date endDate;
 
@@ -45,14 +45,42 @@ namespace AdirEf11th
             return this.endDate;
         }
 
-        public bool Withdrawal(double num, Date date)
+        public class NumAndDate
+        {
+            private double num;
+            private Date date;
+
+            public NumAndDate(double num, Date date)
+            {
+                this.num = num;
+                this.date = date;
+            }
+
+            public double GetNum() { return this.num; }
+            public Date GetDate() { return this.date; }
+            public void SetNum(double num) { this.num = num; }
+            public void SetDate(Date date) { this.date = date; }
+        }
+
+        public override bool Withdrawal(object o)
         {
             bool success = false;
-            if (num > 0 && this.GetEndDate().CompareTo(date) != -1)
+            NumAndDate nad;
+            double num;
+            Date date;
+
+            if (o is NumAndDate)
             {
-                this.balance -= num;
-                success = true;
+                nad = (NumAndDate)o;
+                num = nad.GetNum();
+                date = nad.GetDate();
+                if (num > 0 && this.GetEndDate().CompareTo(date) != -1)
+                {
+                    this.balance -= num;
+                    success = true;
+                }
             }
+            
             return success;
         }
 
@@ -60,6 +88,20 @@ namespace AdirEf11th
         {
             bool risk = this.GetBalance() == 0;
             return risk;
+        }
+
+        public int CompareTo(object o)
+        {
+            SavingAccount sa;
+            int result = 0;
+
+            if (o is SavingAccount)
+            {
+                sa = (SavingAccount)o;
+                result = this.GetEndDate().CompareTo(sa.GetEndDate());
+            }
+
+            return result;
         }
 
         public override string ToString()

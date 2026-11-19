@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdirEf11th
 {
-    public class BasicAccount
+    public abstract class BasicAccount
     {
         private int bankNum;
         private int branchNum;
@@ -73,10 +73,9 @@ namespace AdirEf11th
             return success;
         }
 
-        public virtual bool AtRisk()
-        {
-            return false;
-        }
+        public abstract bool AtRisk();
+
+        public abstract bool Withdrawal(object o);
 
         public override string ToString()
         {

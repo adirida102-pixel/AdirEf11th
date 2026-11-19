@@ -61,14 +61,34 @@ namespace AdirEf11th
             }
         }
 
-        public bool Withdrawal(double num)
+        public override bool Withdrawal(object o)
         {
             bool success = false;
-            if (num > 0 && this.balance - num > -1 * this.overdraft)
+            bool flag = true;
+            double num = 0;
+
+            if (o is double)
             {
-                this.balance -= num;
-                success = true;
+                num = (double)o;
             }
+            else if (o is int)
+            {
+                num = (int)o;
+            }
+            else
+            {
+                flag = false;
+            }
+
+            if (flag)
+            {
+                if (num > 0 && this.GetBalance() - num > -1 * this.GetOverdraft())
+                {
+                    this.SetBalance(this.GetBalance() - num);
+                    success = true;
+                }
+            }
+
             return success;
         }
 

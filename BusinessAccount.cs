@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdirEf11th
 {
-    public class BusinessAccount : CheckingAccount
+    public class BusinessAccount : CheckingAccount, IComparable
     {
         private string businessName;
 
@@ -50,6 +50,30 @@ namespace AdirEf11th
         {
             bool risk = this.GetBalance() <= -1 * 0.9 * this.GetOverdraft();
             return risk;
+        }
+
+        public int CompareTo(object o)
+        {
+            double tpw, opw;
+            BusinessAccount ba;
+            int result = 0;
+
+            if (o is BusinessAccount)
+            {
+                ba = (BusinessAccount)o;
+                tpw = this.GetBalance() + this.GetOverdraft();
+                opw = ba.GetBalance() + ba.GetOverdraft();
+                if (tpw > opw)
+                {
+                    result = 1;
+                }
+                else if (tpw < opw)
+                {
+                    result = -1;
+                }
+            }
+
+            return result;
         }
 
         public override string ToString()
