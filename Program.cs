@@ -12,7 +12,8 @@
             //BankServices.BankServices_UT();
             //UnitTest.Run();
             //NodePractice.Run();
-            ListAndDict.ListsAndDictionaries_UT();
+            //ListAndDict.ListsAndDictionaries_UT();
+            StackPractice.StackPractice_UT();
         }
     }
 }
