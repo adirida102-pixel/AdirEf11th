@@ -10,6 +10,7 @@ namespace AdirEf11th
         {
             Stack<int> stk = new Stack<int>();
             Stack<string> stks = new Stack<string>();
+            Stack<int> stk2 = new Stack<int>();
 
             stk.Push(1);
             stk.Push(10);
@@ -20,11 +21,29 @@ namespace AdirEf11th
             stk.Push(102);
 
             stks.Push("url1");
-            //TODO: Question 7 unit test
+            stks.Push("url2");
+            stks.Push("url3");
+            stks.Push("url4");
+            stks.Push("url5");
+            stks.Push("url6");
+            stks.Push("url7");
+            stks.Push("url8");
+            stks.Push("url9");
+
+            stk2.Push(10);
+            stk2.Push(7);
+            stk2.Push(17);
+            stk2.Push(102);
+            stk2.Push(21);
+            stk2.Push(71);
+            stk2.Push(1);
 
             //Console.WriteLine(Question5(stk));
             //Console.WriteLine(stk);
             //Console.WriteLine(Question6(stk));
+            //Console.WriteLine(Question7(stks, "Back"));
+            //Console.WriteLine(Question7(stks, "BackX"));
+            //Console.WriteLine(Question8(stk, stk2));
         }
 
         public static Stack<int> CopyStack(Stack<int> stk)
@@ -162,6 +181,20 @@ namespace AdirEf11th
             }
 
             return urlResult;
+        }
+
+        public static bool Question8(Stack<int> stk1, Stack<int> stk2)
+        {
+            bool con = true;
+            int val;
+            
+            while (!stk1.IsEmpty())
+            {
+                val = stk1.Pop();
+                con = con && Search(stk2, val);
+            }
+
+            return con;
         }
     }
 }
