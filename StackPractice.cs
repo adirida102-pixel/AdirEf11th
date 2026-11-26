@@ -9,14 +9,22 @@ namespace AdirEf11th
         public static void StackPractice_UT()
         {
             Stack<int> stk = new Stack<int>();
+            Stack<string> stks = new Stack<string>();
+
             stk.Push(1);
             stk.Push(10);
+            stk.Push(21);
             stk.Push(17);
-            stk.Push(17);
-            stk.Push(37);
+            stk.Push(7);
             stk.Push(71);
             stk.Push(102);
-            Console.WriteLine(Question5(stk));
+
+            stks.Push("url1");
+            //TODO: Question 7 unit test
+
+            //Console.WriteLine(Question5(stk));
+            //Console.WriteLine(stk);
+            //Console.WriteLine(Question6(stk));
         }
 
         public static Stack<int> CopyStack(Stack<int> stk)
@@ -95,6 +103,65 @@ namespace AdirEf11th
             }
 
             return con;
+        }
+
+        public static Stack<int> Question6(Stack<int> stk)
+        {
+            int num;
+            Stack<int> rev = new Stack<int>();
+            Stack<int> newStk = new Stack<int>();
+
+            if (!stk.IsEmpty())
+            {
+                num = stk.Pop();
+                while (!stk.IsEmpty())
+                {
+                    rev.Push(stk.Pop());
+                }
+                rev.Push(num);
+
+                while (!rev.IsEmpty())
+                {
+                    newStk.Push(rev.Pop());
+                }
+            }
+            return newStk;
+        }
+
+        public static string Question7(Stack<string> urls, string option)
+        {
+            string urlResult = "";
+            int x;
+            
+            if (option == "Back")
+            {
+                if (!urls.IsEmpty())
+                {
+                    urls.Pop();
+                    urlResult = urls.Top();
+                }
+            }
+
+            else if (option == "BackX")
+            {
+                Console.Write("Enter X: ");
+                x = int.Parse(Console.ReadLine());
+
+                for (int i = 0; i < x; i++)
+                {
+                    if (!urls.IsEmpty())
+                    {
+                        urls.Pop();
+                    }
+                }
+
+                if (!urls.IsEmpty())
+                {
+                    urlResult = urls.Top();
+                }
+            }
+
+            return urlResult;
         }
     }
 }
